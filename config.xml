@@ -6,7 +6,7 @@
 	version = "0.0.1">
 <name>Calhoun County Prototype 1</name>
 <description>An app to track and display active Staging Areas for Alabama.</description>
-<icon src="../icon.png"/>
+<icon src="demos/icon.png"/>
 </widget>
 <gap:platform name="ios" />
 <gap:platform name="android" />
