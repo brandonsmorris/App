@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns = "http://www.w3.org/ns/widgets"
+	xmlns:gap   = "http://phonegap.com/ns/1.0"
+	id = "com.brandon.prototype1"
+	versionCode = "0"
+	version = "0.0.1">
+<name>Calhoun County Prototype 1</name>
+<description>An app to track and display active Staging Areas for Alabama.</description>
+<icon src="../icon.png"/>
+</widget>
+<gap:platform name="ios" />
+<gap:platform name="android" />
+<gap:platform name="winphone" />
+<gap:plugin name="dk.interface.cordova.plugin.googlenavigate" version="0.1.2" />
