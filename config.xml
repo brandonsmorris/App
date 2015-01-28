@@ -7,4 +7,5 @@
             Brandon Morris
         </author>
         <content src="index.html" />
+        <icon src"www/Icon.png" />
     </widget>
