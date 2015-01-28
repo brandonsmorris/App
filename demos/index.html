@@ -1,71 +1,94 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <link href="favicon.ico" rel="icon" type="image/x-icon" />
-        <title>Calhoun County VRC</title>
-        <meta charset="utf-8" />
-        <link rel="stylesheet" href="styles.css">
-        <script type="text/javascript" src="js/modernizr-2.0.6/modernizr.min.js"></script>
-    </head>
-    <body>
-        <div id="map_canvas" class="map"></div>
-        <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
-        <script type="text/javascript" src="js/jquery-1.7.1/jquery.min.js"></script>
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
-        <script type="text/javascript" src="js/underscore-1.2.2/underscore.min.js"></script>
-        <script type="text/javascript" src="js/backbone-0.5.3/backbone.min.js"></script>
-        <script type="text/javascript" src="js/prettify/prettify.min.js"></script>
-        <script type="text/javascript" src="js/demo.js"></script>
-        <script type="text/javascript" src="../ui/jquery.ui.map.js"></script>
-        <script type="text/javascript" src="../ui/jquery.ui.map.overlays.js"></script>
-        <script type="text/javascript" src="../ui/jquery.ui.map.extensions.js"></script>
-        <script type="text/javascript">
-                $(function() {
-                    demo.add(function() {
-                        $('#map_canvas').gmap({
-                            'callback': function() {
-                                var self = this;
-                                self.getCurrentPosition(function(position, status) {
-                                    if (status === 'OK') {
-                                        self.set('clientPosition', new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
-                                        self.addMarker({
-                                            'position': self.get('clientPosition'),
-                                            'bounds': true,
-                                        }).click(function() {
-                                            self.openInfoWindow({
-                                                'content': 'You are Here'
-                                            }, this);
-                                        });
-                                    }
-                                });
+<head>
+    <link href="favicon.ico" rel="icon" type="image/x-icon" />
+    <title>Calhoun County VRC</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="styles.css">
+    <script type="text/javascript" src="js/modernizr-2.0.6/modernizr.min.js"></script>
+</head>
+<body>
+    <div id="map_canvas" class="map"></div>
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+    <script type="text/javascript" src="js/jquery-1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="js/underscore-1.2.2/underscore.min.js"></script>
+    <script type="text/javascript" src="js/backbone-0.5.3/backbone.min.js"></script>
+    <script type="text/javascript" src="js/prettify/prettify.min.js"></script>
+    <script type="text/javascript" src="js/demo.js"></script>
+    <script type="text/javascript" src="js/jquery.ui.map.js"></script>
+    <script type="text/javascript" src="js/jquery.ui.map.overlays.js"></script>
+    <script type="text/javascript" src="js/jquery.ui.map.extensions.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            demo.add(function() {
+                $('#map_canvas').gmap({
+                    'disableDefaultUI':true,
+                    'callback': function() {
+                        var self = this;
+                        self.getCurrentPosition(function(position, status) {
+                            if (status === 'OK') {
+                                self.set('clientPosition', new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
                                 self.addMarker({
-                                    'position': '33.816589, -85.766012',
-                                    'bounds': true
-                                }).click(function() {
+                                    'tags':'foo',
+                                    'position': self.get('clientPosition'),
+                                    'bounds': true,
+                                }).mouseover(function() {
                                     self.openInfoWindow({
-                                        'content': 'Calhoun County Emergency Management'
+                                        'content': 'You are Here'
+                                    }, this);
+                                }).mouseout(function() {
+                                    self.closeInfoWindow({
                                     }, this);
                                 });
-                                self.addMarker({
-                                    'position': '33.746724, -85.686875',
-                                    'bounds': true
-                                }).click(function() {
-                                    self.openInfoWindow({
-                                        'content': 'White Plains High School'
-                                    }, this);
-                                });
-                                self.addMarker({
-                                    'position': '33.788995, -86.001299',
-                                    'bounds': true
-                                }).click(function() {
-                                    self.openInfoWindow({
-                                        'content': 'Ohatchee Elementary School'
-                                    }, this);
-                                });
-                            },
+                            }
                         });
-                    }).load();
+                        self.addMarker({
+                            'position': '33.816589, -85.766012',
+                            'bounds': false ,
+                        }).mouseover(function() {
+                            self.openInfoWindow({
+                                'content': 'Calhoun County Emergency Management'
+                            }, this);
+                        }).mouseout(function() {
+                            self.closeInfoWindow({
+                            }, this);
+                        });
+                        self.addMarker({
+                            'position': '33.746724, -85.686875',
+                            'bounds': false,
+                        }).click(function() {
+                            self.openInfoWindow({
+                                'content': 'White Plains High'
+                            }, this);
+                        }).mouseout(function() {
+                            self.closeInfoWindow({
+                            }, this);
+                        });
+                        self.addMarker({
+                            'position': '33.788995, -86.001299',
+                            'bounds': false,
+                        }).click(function() {
+                            self.openInfoWindow({
+                                'content': 'Ohatchee Elementary School'
+                            }, this);
+                        }).mouseout(function() {
+                            self.closeInfoWindow({
+                            }, this);
+                        });
+                    },
+                    'zoom': 6,
+                     'zoomControl':true,
+                     zoomControlOptions: {
+                        style: google.maps.ZoomControlStyle.DEFAULT
+                     },
+                        'mapTypeControl': true,
+                        mapTypeControlOptions: {
+                            style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
+                        },
                 });
-        </script>
-    </body>
+}).load();
+});
+</script>
+</body>
 </html>

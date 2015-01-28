@@ -1,0 +1,12 @@
+ <widget id="com.example.hello" version="0.0.1">
+        <name>ProtoType EMA</name>
+        <description>
+            A prototype of the App for the Calhoun County EMA
+        </description>
+        <author email="brandonmorrisdev@gmail.com">
+            Brandon Morris
+        </author>
+        <content src="index.html" />
+        <access origin="*" />
+        <icon src="icon.png" />
+    </widget>
